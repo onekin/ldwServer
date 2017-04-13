@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<head profile="http://www.w3.org/2005/10/profile">
+<link rel="shortcut icon" type="image/jpg" href="$base_url$IMGURL/favicon.jpg">
+<link rel="icon" type="image/jpg" href="$base_url$IMGURL/favicon.jpg">
+<title>LDW Platform</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<link rel="stylesheet" type="text/css" href="$base_url$CSSURL/styles.css" />
+
+</head>
+
+<body>	
+	
+	<div id="header">
+		<a href="$base_url"><img src="$base_url$IMGURL/logo.jpg" alt="fail..." class="logo" />	<p>The Linked Data Wrappers Project by the Onekin Research Group</p></a>
+		<div id="meta">		
+			<a href="$service/page/project/" class="meta1">Home</a>
+			<a href="http://www.google.es/search?q=LDW+Linked+Data+Wrappers" class="meta2">Search</a>
+			<a href="mailto:iker.azpeitia@ehu.es?subject=Linked Data Wrappers" class="meta3">Contacts</a>
+		</div>
+	</div>

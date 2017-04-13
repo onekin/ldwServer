@@ -1,0 +1,176 @@
+					
+	#parse ("/org/onekin/ldw/templates/header.vm")
+
+	<div id="wrapper" class="contentbg_s">
+	  <div id="sidebar">
+		  #parse ("/org/onekin/ldw/templates/left.vm")
+	  </div>  <!--sidebar -->
+		
+	  <div id="content">
+		 
+        <!------------------->                    
+
+ #if ($isSyntacticallyCorrect && $isDereferentiallyCorrect && $isBackwardCompatible)
+  	<img src="$base_url$IMGURL/ok.png" alt="ok" style="width:20px;height:20px;">
+         The <b>$wrapperName</b> LDW has been deployed!<br/>
+ #else
+  	<img src="$base_url$IMGURL/error.png" alt="bad" style="width:20px;height:20px;">
+ 	 The <b>$wrapperName</b> LDW has not been registered yet!<br/>
+ #end
+          			          			 
+      
+                          
+<br/>
+#if ($isSyntacticallyCorrect)
+ <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">
+ #end
+ SYNTACTIC VERIFICATION: 
+<table style="width:100%">    
+  <col width="20%">
+  <col width="80%">
+  <tr>
+    <th>DIMENSION</th>
+    <th>MESSAGE</th>
+  </tr>
+  <tr>
+ 
+    <td>URIPattern: </td>
+ #if (!$uripattern)
+     <td><img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;"> The LDW lacks the URI pattern.</td>
+ #else
+    <td><img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">
+ $uripattern</td>
+ #end
+  </tr> 
+  <tr>
+    <td>URIExample: </td>
+ #if ($hasURIExamples)
+  <td><img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">
+  $URIExamplesList </td>      
+ #else
+    <td><img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;"> The LDW lacks URI examples.</td> 
+ #end
+  </tr>
+  <tr>
+    <td>URIExample matches URIPattern: </td>
+    <td>
+    #if ($isMatchingCorrect)
+ <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">They match completely: $MatchingParams
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">They match partially.
+ #end
+ </td>
+  </tr>
+<!--  <tr>
+    <td>URIPattern annotation: </td>
+    <td>
+    #if ($matchesAliases)
+ <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">There is not any annotation mismatch.
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">These URI pattern annotations are not input key's aliases: $incorrectalias
+ #end
+ </td>
+  </tr>
+  -->
+  <tr>
+    <td>Lifting function: </td>
+ #if ($LiftingExists)
+     <td><img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">
+ It exists and has the <i>Pipe</i> and the <i>URI</i> input parameters.</td>
+ #else
+     <td><img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;"> The LDW lacks the Lifting function or one of the required input parameters <i>(pipe id="oneXML" ... or key id="URI" ....)</i>.</td>
+ #end
+  </tr> 
+</table>
+<br/>         
+        
+#if ($isDereferentiallyCorrect)
+ <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">
+ #end
+
+DEREFERENCE VERIFICATION:  
+<table style="width:100%">
+  <col width="20%">
+  <col width="80%">
+  <tr>
+    <th>DIMENSION</th>
+    <th>MESSAGE</th>
+  </tr>  
+  #if ($isSyntacticallyCorrect)    
+  <tr>
+    <td>Lowering process: </td>
+    <td>
+    #if ($isLoweringCorrect)
+ <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">
+ #end
+ $getMessageLowering</td>
+  </tr>
+  <tr>
+    <td>Lifting process: </td>
+    <td>
+ #if ($isLiftingCorrect)
+ <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">Mapping correctly completed. 
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">Problems in the mapping process: $getMessageLifting ;
+ #end    
+ </td>
+  </tr>    
+  <tr>
+    <td>Output resource: </td>
+    <td>#if (! $isVoid)
+ <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;">A complete LD resource has been generated.   See quality issues on the <a href="$base_url/ldw/page/Healthchecker/#/healthchecker/">Health Checker</a> webpage
+ 
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">A void LD resource has been generated.
+ #end
+  <img src="$base_url$IMGURL/warning.png" alt="warning" style="width:15px;height:15px;">    
+ </td>
+  </tr>
+  #end 
+</table>   
+<br/>
+    
+<br/>
+ #if ($isBackwardCompatible)
+<!-- <img src="$base_url$IMGURL/ok.png" alt="ok" style="width:15px;height:15px;"> -->
+ #else
+  <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">
+  
+   BACKWARD COMPATIBILITY VERIFICATION:
+<table style="width:100%">
+  <col width="20%">
+  <col width="80%">
+  <tr>
+    <th>DIMENSION</th>
+    <th>MESSAGE</th>
+  </tr>
+  
+  #if (! $isTheFirst)
+       <tr>
+  #if ($isSyntacticallyCorrect)
+  #if (!$isBackwardCompatible)
+    #foreach ($lost in $getLostProperties)
+       <tr>
+    <td>$lost</td>
+    <td> <img src="$base_url$IMGURL/error.png" alt="bad" style="width:15px;height:15px;">Lost property.</td>
+  </tr>
+	#end  
+#end
+#end
+#end
+</table>  
+#end
+
+
+ <!---------------------->
+
+	   </div>   <!-- content-->
+	</div>   <!--wrapper  -->
+</body>
+</html>

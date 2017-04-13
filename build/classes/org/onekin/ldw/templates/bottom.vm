@@ -1,0 +1,11 @@
+<div id="footer" class="mainbg_s">
+		<div id="navigation">
+			<ul>
+				<li><a href="$service/page/project/">The LDW Project</a> |</li>
+				<li><a href="$service/page/healthchecker/#/healthchecker/">Health Checker</a> |</li>
+				<li><a href="https://github.com/onekin/ldw">LDW Repository</a> |</li>
+				<li><a href="https://developer.yahoo.com/yql/console/">YQL Console</a> |</li>
+				<li><a href="$base_url/resources/ldbrowser.html">LDBrowser</a> |</li>
+			</ul>
+		</div>
+</div>

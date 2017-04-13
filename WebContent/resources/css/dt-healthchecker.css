@@ -1,0 +1,112 @@
+.down{background-image:url(img/down.png); background-repeat: no-repeat;  background-size: 15px 15px;}
+.right{background-image:url(img/right.jpeg); background-repeat: no-repeat; background-size: 15px 15px;}
+
+p{
+    margin:100px;
+    float:left;
+    position:relative;
+    cursor:pointer;
+}
+
+p:hover span{
+    display:block;
+}
+.accordion-toggle:hover {
+    text-decoration: none;
+}
+.navbar {
+    background-color: #F4F5F5;
+    background-color: #8AABC3;
+}
+.navbar-brand {
+    color: #FFF !important;
+}
+
+.navbar input {
+    box-shadow: none;
+}
+.navbar i {
+    margin-right: .5em;
+}
+.navbar-nav a:hover {
+    background-color: #97B8D0 !important;
+}
+body {
+    background-color: #F4FAFD;
+}
+.navbar .container {
+    max-width: 100%;
+}
+.side {
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    bottom: 0px;
+    width: 250px;
+}
+.panel .icon-circle {
+    font-size: 9px;
+    vertical-align: middle;
+}
+.main {
+    position: fixed;
+    left: 0px;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    padding-top: 1em;
+    overflow-y: scroll;
+}
+.panel-heading {
+    border-top: 1px solid #DDD;
+    background-color: #EFEFEF;
+    cursor: pointer;
+}
+.panel-heading:hover {
+    background-color: #FAFAFA;
+    text-decoration: underline;
+    color: blue;
+}
+.panel-name {
+    margin-right: 1em;
+}
+
+.q-sibling:before{ background-color: #0000FF;}
+.q-200:before{ background-color: #ADD100;}
+.q-404:before{ background-color: #FFC267;}
+.q-500:before{ background-color: #E81515;}
+.q-auth:before{ background-color: #000;}
+.q-401:before{ background-color: #000;}
+.q-sibling {
+    color: #0000FF !important;   
+}
+.q-200 {
+    color: #ADD100 !important;   
+}
+.q-404 {
+   color: #FFC267 !important;
+}
+.q-500 {
+    color: #E81515 !important;
+}
+.q-auth {
+    color: #000 !important;
+}
+.q-401 {
+    color: #000;
+}
+
+.panel {
+    border: none;
+    border-radius: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+.panel-default {
+    border: none;
+}
+.enabled {
+    border-bottom: 3px solid;
+}

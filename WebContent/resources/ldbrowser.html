@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+<style>
+input{width: 80%;}
+
+</style>
+</head>
+<body>
+
+
+<p>LDBrowser: a Linked Data Browser. LDB</p>
+
+Write a URI and push Get button. Navigate clicking on links. 
+<br/>
+<form>
+    URI: <input type="text" name="uri" id="uri" value=""><br>
+  <input type="button" onclick="askIndividual()" value="Get">
+   <input type="button" onclick="sendIndividual()" value="Post">
+</form>
+    
+    <pre id="jsontxt">
+JSON-LD response will appear here if GET button  is pressed. This is the call payload if POST is pressed.
+    </pre>
+
+<br/>Response status code: <p id="respcode">2</p>
+<br/>Response headers: <p id="respheaders">3</p>
+
+<script>
+ var anchoruri = document.getElementById("uri");
+ var anchorjsontxt = document.getElementById("jsontxt");
+ var anchorrespcode = document.getElementById("respcode");
+ var anchorrespheaders = document.getElementById("respheaders");
+  
+ function askIndividual() { 
+	  var uri = anchoruri.value;
+	  askJSON(uri, function (resp) {individualLoaded(resp);});
+	}
+ function sendIndividual() { 
+	  var uri = anchoruri.value;
+	  sendJSON(uri, function (resp) {individualLoaded(resp);});
+	}
+
+function individualLoaded(resp){
+    h=resp;
+//  var h= JSON.stringify(resp);
+    //h= decodeURIComponent(resp);
+  anchorjsontxt.innerHTML=linkify(h);
+}
+
+function linkify(text){
+    if (text) {
+    	var exp = /,/g;
+    	text = text.replace(exp,",\n"); 
+        text = text.replace(/http[^"]*/g,
+            function(url){//url = decodeURIComponent(url);
+                          //alert(url);
+                          //url = unescape(url);
+                          //alert(url);
+                          
+                var find = '\\\\';
+                          var re = new RegExp(find, 'g');
+                          url = url.replace(re, '');
+                return '<a id ="'+hashIt(url)+'" href="' + url + '" onclick="return check(event)">' + url + '</a>';
+            }
+        );
+    }
+    return text;
+}
+    
+    function check(event){
+        anchoruri.value = event.target.href;
+        createIndividual();
+        return false;
+    }
+    
+function hashIt (s) {
+var hash = 0, strlen = s.length, i, c;
+if (strlen === 0 ) {
+return hash;
+}
+for (i = 0; i < strlen; i++ ) {
+c = s.charCodeAt( i );
+hash += c;
+}
+return hash;
+}
+    
+function askJSON(url, callback){
+  //console.log ('URLjson calling: '+url);
+  var xmlhttp = createCrossDomainRequest();
+  xmlhttp.open('GET', url, true);
+  xmlhttp.setRequestHeader('Accept','application/json; q=0.9, application/rdf+xml; q=0.5');
+	xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4) {
+        if(xmlhttp.status == 200) {
+          //console.log('xmlhttp.status::  '+xmlhttp.status);
+          // console.info(xmlhttp.responseText);
+          	var headers = xmlhttp.getAllResponseHeaders ();
+          	anchorrespheaders.innerHTML= headers;
+          	anchorrespcode.innerHTML= xmlhttp.status;
+          	
+            var obj = xmlhttp.responseText;
+            callback (obj);
+         }else{
+        	 anchorrespheaders.innerHTML= headers;
+           	anchorrespcode.innerHTML= xmlhttp.status;
+    		alert("Problem retrieving data. Status: "+xmlhttp.status + ' | '+xmlhttp.statusText +' \n Response: ' + xmlhttp.responseText);
+  		}
+    }
+};
+xmlhttp.send(null);
+}
+    
+function sendJSON(url, callback){
+	  //console.log ('URLjson calling: '+url);
+	  var xmlhttp = createCrossDomainRequest();
+	  xmlhttp.open('Post', url, true);
+	  xmlhttp.setRequestHeader('Accept','application/json; q=0.9, application/rdf+xml; q=0.5');
+		xmlhttp.onreadystatechange = function() {
+	    if (xmlhttp.readyState == 4) {
+	        if(xmlhttp.status == 200 || xmlhttp.status == 201) {
+	          //console.log('xmlhttp.status::  '+xmlhttp.status);
+	          // console.info(xmlhttp.responseText);
+	            var obj = xmlhttp.responseText;
+	            callback (obj);
+	         }else{
+	    		alert("Problem retrieving data. Status: "+xmlhttp.status + ' | '+xmlhttp.statusText +' \n Response: ' + xmlhttp.responseText);
+	  		}
+	    }
+	};
+	xmlhttp.send(null);
+	}
+	    
+    
+function createCrossDomainRequest(){ 
+var request;
+if (window.XDomainRequest){   //IE8
+  request = new window.XDomainRequest();
+} else if (window.XMLHttpRequest)
+  {// code for all new browsers
+      request=new XMLHttpRequest();
+  }
+else if (window.ActiveXObject)
+  {// code for IE5 and IE6
+      request=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+if (request!=null)
+  {
+      return request;
+  }
+else
+  {
+      alert("Your browser does not support XMLHTTP.");
+  }
+}
+
+</script>
+
+</body>
+</html>

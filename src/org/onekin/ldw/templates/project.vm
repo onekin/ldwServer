@@ -1,0 +1,34 @@
+		#parse ("/org/onekin/ldw/templates/header.vm")
+
+ #if( $logged == "true" )  				   
+	<div id="menu">
+			<ul>
+				<li id="active"><a href="$service/page/project/">The Project</a></li>
+				<li><a href="$service/page/mywrappers/">My Wrappers</a></li>
+				<li><a href="$service/page/myenvironments/">My Environments</a></li>
+				<li ><a href="$service/page/publish/">Publish</a></li>
+			</ul>
+		</div>
+  #end
+		
+	<div id="wrapper" class="contentbg_s">
+	  <div id="sidebar">
+		#parse ("/org/onekin/ldw/templates/left.vm")
+      </div>
+		<div id="content">
+			<div class="service">
+				<!--<img src="$base_url$IMGURL/title4.gif" alt="" width="240" height="30" /><br />
+				<img src="$base_url$IMGURL/pic1.jpg" alt="" width="150" height="98" class="pic" />-->
+				<h1>Linked Data Wrapping as a Service</h1>
+				<p>
+				Platform as a service (PaaS) allows customers to develop, run, and manage applications without being involved in maintaining the associated infrastructure. We believe Linked Data Wrappers (LDWs) might well benefit from this kind of approach. LDWs have been proposed to integrate Open APIs into the Linked Data Cloud. Frequently, LDWs are developed in-house and their lifetime is that of the containing application. We advocate for LDWs to be externalized into third-party platforms. Besides the PaaS benefits, this approach addresses one of LDWs' main hurdles: maintenance. API upgrades are LDWs' Damocles sword. An LDW platform might well offer support for collaborative LDW definition and maintenance, extending their lifetime beyond their breakout projects, and in so doing, becoming a sound Semantic layer on top of existing Open APIs. This paper contributes to this vision through: (1) identifying a set of requirements for LDW platforms; (2) instantiating these requirements for Yahoo's YQL; and (3) validating the extent to which this approach accounts for collaborative maintenance. 
+				 </p>
+				<iframe src="https://player.vimeo.com/video/191387351" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/191387351">SYQL (Semantic YQL)</a> from <a href="https://vimeo.com/onekin">Onekin</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+			     <br/>
+				 </p>
+			</div>
+		</div>
+		</div>
+</body>
+</html>

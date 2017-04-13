@@ -1,0 +1,28 @@
+		<div id="textin">
+		  		    #if( $logged == "true" )
+  				        <div id="login"><p>Hello <strong>$user_name!</strong> You are logged in using your <strong>$user_account</strong> account. </p>
+  							<p>Click the following button to log out: </p>
+					       <a href="$service/logout" class="esteka"><img  src="$base_url$IMGURL/logout.png" alt="Logout" /></a>
+		                 </div>  			
+		  	        #end
+		
+					<p>LD PRODUCERs can develop, register and modify Wrappers following this steps:</p>
+<ol>
+  <li> install the <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/" target="_blank">Greasemonkey Firefox add-on</a> (Firefox is compulsory). </li>
+<li> install the <a href="https://raw.githubusercontent.com/onekin/ldw/master/odt2ldw.user.js" target="_blank">SYQL plug-in</a> which augment the YQL Console and Editor.</li>
+<li> navigate to the <a href="https://developer.yahoo.com/yql/console/" target="_blank">YQL Console</a>.</li>
+<li> log in with your Yahoo! account.</li> 
+<li> click on your preferred ODT or LDW on the left panel.</li>
+<li> click the "test" button.</li>
+<li> start annotating with the SYQL plug-in.</li>
+<li> "generate" the LDW.</li>
+<li> modify it into the YQL Editor (if required).</li>
+<li> "publish" the LDW.</li>
+</ol>
+					<br/>
+					<p>LD CONSUMERs can lookup URIs and check the response through our <a href="$service/page/ldbrowser" target="_blank">Linked Data Browser</a>
+					or check Wrapper's health on the <a href="$service/page/Healthchecker/#/healthchecker/" target="_blank">Wrapper's health checker</a></p>
+					<br/>
+<p>All the wrappers are stored in the Github <a href="https://github.com/onekin/ldw" target="_blank">LDW Repository</a></p>
+				</div>
+		

@@ -1,0 +1,186 @@
+{
+  "@context": {
+    "schema":"http://schema.org/",
+    "km4c":"http://www.disit.org/km4city/schema#",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "ApiDocumentation": "hydra:ApiDocumentation",
+    "property": {
+      "@id": "hydra:property",
+      "@type": "@id"
+    },
+    "readonly": "hydra:readonly",
+    "writeonly": "hydra:writeonly",
+    "supportedClass": "hydra:supportedClass",
+    "supportedProperty": "hydra:supportedProperty",
+    "supportedOperation": "hydra:supportedOperation",
+    "method": "hydra:method",
+    "expects": {
+      "@id": "hydra:expects",
+      "@type": "@id"
+    },
+    "returns": {
+      "@id": "hydra:returns",
+      "@type": "@id"
+    },
+    "statusCodes": "hydra:statusCodes",
+    "code": "hydra:statusCode",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "label": "rdfs:label",
+    "description": "rdfs:comment",
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    },
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/apidocumentation",
+  "@type": "ApiDocumentation",
+  "supportedClass": [
+    {
+      "@id": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/credentials",
+      "@type": "hydra:Class",
+      "hydra:title": "Credentials",
+      "hydra:description": "Credentials to retrieve flickr.videoobject data",
+      "supportedOperation": [
+      ],
+      "supportedProperty": [
+      {
+        "property": "http://uri4uri.net/vocab#key",
+        "hydra:title": "api_key",
+        "hydra:description": "api_key",
+        "required": true,
+        "readonly": false,
+        "writeonly": false
+      }
+      ]
+    },
+    {
+      "@id": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/entrypoint",
+      "@type": "hydra:Class",
+      "subClassOf": null,
+      "label": "EntryPoint",
+      "description": "The main entry point.",
+      "hydra:template":"http://rdf.onekin.org/flickr/videoobject/{photo_id}",
+      "hydra:mapping":[{"@type":"hydra:TemplateMapping",
+        "hydra:variable":"photo_id",
+        "required": true,
+        "readonly": false,
+        "writeonly": false}],
+      "supportedOperation": [
+        {
+          "@id": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/operation/webservicelookup",
+          "@type": "hydra:Operation",
+          "method": "GET",
+          "label": "LookupOperation",
+          "description": "Lookup URIs matching pattern http://rdf.onekin.org/flickr/videoobject/{photo_id}",
+          "expects": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/credentials",
+          "returns": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/class",
+          "statusCodes": [     ]
+        }
+      ],
+      "supportedProperty": [
+      ]
+    },
+    {
+      "@id": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/class",
+      "@type": "hydra:Class",
+      "hydra:title": "flickr.videoobject",
+      "hydra:description": null,
+      "supportedOperation": [
+        {
+          "@id": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/operation/webservicelookup",
+          "@type": "hydra:Operation",
+          "method": "GET",
+          "label": "LookupOperation",
+          "description": "Lookup URIs matching pattern http://rdf.onekin.org/flickr/videoobject/{photo_id}",
+          "expects": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/credentials",
+          "returns": "http://rdf.onekin.org/flickr/videoobject/{photo_id}/class",
+          "statusCodes": [          ]
+        }
+      ],
+      "supportedProperty": [
+      {
+        "property": "http://schema.org/description",
+        "hydra:title": "description",
+        "hydra:description": "description",
+        "required": false,
+        "readonly": false,
+        "writeonly": false
+      },
+        {
+          "property": "http://schema.org/name",
+          "hydra:title": "name",
+          "hydra:description": "name",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        },
+
+        {
+          "property": "http://schema.org/contentUrl",
+          "hydra:title": "contentUrl",
+          "hydra:description": "contentUrl",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        },
+        {
+          "property": "http://schema.org/thumbnailUrl",
+          "hydra:title": "thumbnailUrl",
+          "hydra:description": "thumbnailUrl",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        },
+        {
+          "property": "http://schema.org/uploadDate",
+          "hydra:title": "uploadDate",
+          "hydra:description": "uploadDate",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        },
+        {
+          "property": "http://schema.org/interactionCount",
+          "hydra:title": "interactionCount",
+          "hydra:description": "interactionCount",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        },
+        {
+          "property": "http://schema.org/duration",
+          "hydra:title": "duration",
+          "hydra:description": "duration",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        },
+        {
+          "property": "http://schema.org/about",
+          "hydra:title": "about",
+          "hydra:description": "about",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        },
+        {
+          "property": "km4c:hasWeatherReport",
+          "hydra:title": "hasWeatherReport",
+          "hydra:description": "hasWeatherReport",
+          "required": false,
+          "readonly": false,
+          "writeonly": false
+        }
+      ]
+    }
+  ]
+}

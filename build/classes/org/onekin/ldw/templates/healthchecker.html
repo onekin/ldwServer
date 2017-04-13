@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <link rel="stylesheet" href="#WEBURL#/resources/css/bootstrap-3.0.0.min.css" />
+        <link rel="stylesheet" href="#WEBURL#/resources/css/font-awesome-3.2.1.min.css" /> 
+         <link rel="stylesheet" href="#WEBURL#/resources/css/dt-healthchecker.css" />
+         <link rel="stylesheet" href="#WEBURL#/resources/css/modal.css" />
+        <!--[if IE 7]>
+            <link rel="stylesheet" media="all" href="http://www.datatables.org/assets/css/font-awesome-ie7-3.2.1.min.css" />
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="http://www.datatables.org/assets/js/html5shiv-3.7.0.js"></script>
+            <script src="http://www.datatables.org/assets/js/respond-1.3.0.min.js"></script>
+        <![endif]-->
+        
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="shortcut icon" type="image/jpg" href="#WEBURL#/resources/img/favicon.jpg">
+<link rel="icon" type="image/jpg" href="#WEBURL#/resources/img/favicon.jpg">
+<title>LDW Health Checker</title>
+    </head>
+    <body>
+        <div class="navbar navbar-static-top">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://rdf.onekin.org/ldw/page/">Linked Data Wrappers Health Checker</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                   <li><a data-status="200" title="Show high quality LDWs" class="q-200" href="#" style="font-size: 16px;"><i class="icon-circle q-200"></i>#OKS#</a></li> 
+                    <li><a data-status="20" title="Show low quality LDWs" class="q-sibling" href="#" style="font-size: 16px;"><i class="icon-circle q-sibling"></i>#LOWQUALITY#</a></li>  
+                    <li><a data-status="204" title="Show LDWs that returned an empty response" class="q-404" href="#" style="font-size: 16px;"><i class="icon-circle q-404"></i>#BLANKS#</a></li> 
+                    <li><a data-status="500" title="Show LDWs that failed" class="q-500" href="#" style="font-size: 16px;"><i class="icon-circle q-500"></i>#FAILS#</a></li> 
+                    <li><a data-status="401" title="Show LDWs that require authentication and/or credentials" class="q-401" href="#" style="font-size: 16px;"><i class="icon-circle q-401"></i>#AUTHS#</a></li> 
+                </ul>
+                <form class="navbar-form navbar-left hidden-sm" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>Based on the <a href="https://www.datatables.org/healthchecker/">YQL! Health Checker</a>.
+              <div class="form-group">
+           
+        </div>
+        
+            </div>  
+        </div>
+
+        <script>
+        var DT = #WRAPPERDIAGNOSTICS#;
+               </script>
+        <script src="#WEBURL#/resources/js/yui-min.js"></script>
+        <script src="#WEBURL#/resources/js/dt-collapse.js"></script>
+        <script src="#WEBURL#/resources/js/dt-healthchecker-navbar.js"></script>
+        <script src="#WEBURL#/resources/js/dt-healthchecker-app.js"></script>
+       <script src="#WEBURL#/resources/js/wrappermanager.js"></script> 
+      <script > 
+       function myfunc(div) {
+  var className = div.getAttribute("class");
+  if(className=="panel-heading right") {
+    div.className = "panel-heading down";
+  }  else{
+    div.className = "panel-heading right";
+  }
+}
+       </script>
+        <script id="t1" type="x-handlebars-template">
+<div class="panel-heading right" onclick="myfunc(this)">
+    <h4 class="panel-title">
+        <i class="icon-accordion-toggle"></i>
+        <a class="accordion-toggle" data-toggle="collapse" href="#">
+            <span class="panel-name">
+
+{{name}}</span>            
+            {{#if errors}}
+                {{#each errors}}
+                    <i class="icon-circle 
+    					{{#cmp . 20}}q-sibling{{/cmp}}
+        				{{#cmp . 200}}q-200{{/cmp}}
+                        {{#cmp . 404}}q-404{{/cmp}}
+                        {{#cmp . 401}}q-401{{/cmp}}
+                        {{#cmp . 500}}q-500{{/cmp}}
+                        " title="{{#cmp . 200}}Passed{{/cmp}}{{#cmp . 20}}Passed{{/cmp}}{{#cmp . 404}}Empty response{{/cmp}}{{#cmp . 401}}Requires authentication and/or credentials{{/cmp}}{{#cmp . 500}}Failed{{/cmp}}">
+                    </i>
+                {{/each}}
+            {{else}}
+                <span title="No sample query given">?</span>
+            {{/if}}
+        </a>
+    </h4>
+</div>
+<div class="panel-collapse collapse">
+    <div class="panel-body">
+    </div>
+</div>
+	</script>			
+        <script id="t" type="x-handlebars-template" >		
+			{{#rate}}<a href="{{.}}" class="btn btn-default btn-sm" target="_blank">Rate it</a>{{/rate}}
+            {{#author}}
+            <dl>
+                <dt>Author</dt>
+<dd>{{.}}</dd>
+            </dl>
+            {{/author}}   
+    		{{#void}}
+            <dl>
+                <dt>VoID: Linked Dataset description</dt>
+                <dd><a target="_blank" href="{{.}}">{{.}}</a></dd>
+            </dl>
+            {{/void}}
+<!--			{{#hydra}}
+            <dl>
+                <dt>Hydra: Hypermedia-Driven Web APIs description</dt>
+                <dd><a target="_blank" href="{{.}}">{{.}}</a></dd>
+            </dl>
+            {{/hydra}} -->
+            <dl>
+                <dt>Description </dt>
+                {{#description}}
+                <dd>{{.}}</dd>
+                {{/description}}
+            </dl>
+            {{#if queries}}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>URI Example</th>
+                    <th>Error</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each queries}}
+                        <tr >
+                            <td  title="A3: Dereferenceability of the URI. Checking sample URIs work. " style="padding-left:2em">
+                                <i class="icon-circle 
+                                    {{#cmp status_code 20}}q-sibling{{/cmp}}
+                                    {{#cmp status_code 200}}q-200{{/cmp}}
+                                    {{#cmp status_code 404}}q-404{{/cmp}}
+                                    {{#cmp status_code 401}}q-401{{/cmp}}
+                                    {{#cmp status_code 500}}q-500{{/cmp}}
+                                    ">
+                                </i>
+                            </td>
+                            <td title=" U2: Exemplary URIs."><a href="{{statement}}" target="_blank">{{statement}}</a></td>
+                            <td>{{#cmp status_code 20}}Some quality issues arose. See below.{{/cmp}}
+                                {{#cmp status_code 200}}Good overall quality LDW.{{/cmp}}
+                                {{#cmp status_code 404}}Empty response.{{/cmp}}
+                                {{#cmp status_code 401}}Requires credentials. {{/cmp}}
+                                {{#cmp status_code 500}}Void individual.{{/cmp}}
+                            </td>
+                            <td>
+							    {{#cmp status_code 20}}<a href="https://developer.yahoo.com/yql/console/" class="btn btn-default btn-sm" target="_blank">Maintain the LDW</a>{{/cmp}}
+							    {{#cmp status_code 401}}<a onclick="setNewData('{{statement}}', '{{credentials}}', '{{source}}')" class="btn btn-default btn-sm" target="_blank">Set new credentials and/or Uri Example</a>{{/cmp}}
+							    {{#cmp status_code 500}} {{#source}}<a href="{{.}}" class="btn btn-default btn-sm" target="_blank">Source Code</a>{{/source}}{{/cmp}}
+                            </td>
+                        <tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{/if}}
+
+ <table class="table table-striped">
+   <thead>
+     <tr>
+       <th>Status</th>
+       <th>Accessibility Dimension</th>
+       <th>Message</th>
+        </tr>
+        </thead>
+          <tbody>
+  <tr title="Checking sample URI output interlinks are dereferenceable">
+    <td>{{#cmp I1ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp I1ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td><td>
+   I1:  Interlink quality: </td>
+<td>Avoiding LDW dead locks there are {{I1}}
+ </td></tr>
+  <tr title="Checking sample URI output interlinks exist">
+    <td> {{#cmp I2ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp I2ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td><td>
+   I2:  Links to external data providers: </td>
+<td>{{I2}}</td></tr>
+
+  <tr title="(minimum) Delay between submission of a request by the user and reception of the response from the system">
+    <td>{{#cmp P2ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp P2ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td><td>
+   P2:  Low latency: </td>
+<td>{{P2}}  miliseconds
+ </td></tr>
+
+  <tr title="(maximum) Number of answered HTTP-requests per second">
+    <td>{{#cmp P3ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp P3ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td><td>
+   P3:  High throughput: </td>
+<td>{{P3}}  calls/second
+ </td></tr>
+
+  <tr title="Detection of whether the time to answer an amount of ten requests divided by ten is not longer than the time it takes to answer one request">
+    <td>{{#cmp P4ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp P4ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td><td>
+   P4:  Scalability of the data source: </td>
+<td>An average of {{P4}} miliseconds (last 10 calls).
+ </td></tr>
+</tbody>
+</table>
+
+ <table class="table table-striped">
+   <thead>
+     <tr>
+       <th>Status</th>
+       <th>Intrinsic Dimension</th>
+       <th>Message</th>
+        </tr>
+        </thead>
+          <tbody>
+
+  <tr title="Detection of NULL values indicating possible incorrect mappings.">
+   <td>{{#cmp SV2ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp SV2ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td>
+<td>  SV2: Syntactically accurate. </td>
+<td> {{SV2}} </td>
+</tr>
+
+  <tr title="Different points of view about the LDW.">
+   <td>{{#cmp SA2ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp SA2ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td>
+<td>  SA2: No inaccurate values. </td>
+<td>{{SA2}}. Consumers report 5 issues in <a href="">Github</a>. </td>
+</tr>
+
+<tr title="Detection of owl:DeprecatedClass, owl:DeprecatedProperty or the deprecated word into description">
+<td>{{#cmp CS4ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp CS4ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td>
+<td>CS4: No deprecated properties or classes. </td>
+<td> {{CS4}} </td>
+</tr>
+  <tr title="Check for redundant attributes">
+    <td> {{#cmp CN1ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+ {{#cmp CN1ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td><td>
+   CN1: Intensionall conciseness.  </td>
+<td>{{CN1}}</td>
+</tr>
+  <tr title="Rate of XML tags lifted in the LDW">
+    <td> {{#cmp CM2ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp CM2ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td>
+<td> CM2: Property completeness  </td>
+<td>{{CM2}} ([Semantic properties / XML attributes] ratio > 0.5) 
+ </td></tr>
+  <tr title="Rate of XML tags used to link to datasets">
+    <td>
+ {{#cmp CM4ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp CM4ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td><td>
+   CM4: Interlink completeness  </td>
+<td>{{CM4}} ([Semantic Interlinks / XML attributes] ratio > 0.1 )
+ </td></tr>
+</tbody>
+</table>
+
+ <table class="table table-striped">
+   <thead>
+     <tr>
+       <th>Status</th>
+       <th>Contextual Dimension</th>
+       <th>Message</th>
+        </tr>
+        </thead>
+          <tbody>
+  <tr title="Use of the LDW and the consumers' ratings. ">
+<td> {{#cmp T7ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp T7ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="ok" style="width:20px;height:20px;">{{/cmp}}</td>    
+<td>
+  T7: Reputation of the dataset:  </td>
+<td> {{T7}} 
+| Ratings in <a href="">Github</a>: +21 -6 = +16. </td>
+</tr>
+</tbody>
+
+<!--
+ <table class="table table-striped">
+   <thead>
+     <tr>
+       <th>Status</th>
+       <th>Representational Dimension</th>
+       <th>Message</th>
+        </tr>
+        </thead>
+          <tbody>
+
+  <tr title="Classes and properties pertain to a dereferenceable ontology">
+<td>{{#cmp IN3ok 0}}<img src="#WEBURL#/resources/img/warning.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}
+{{#cmp IN3ok 1}}<img src="#WEBURL#/resources/img/ok.png" alt="bad" style="width:20px;height:20px;">{{/cmp}}</td>
+<td> IN3: Usage of defined classes and properties. </td>
+<td>{{IN3}}</td>
+</tr>
+
+</tbody>
+
+</table>
+-->
+        </script>
+        <script>
+            YUI().use('dt-healthchecker-app', function(Y) {
+                DT.app = new DT.App({
+                    container: 'body',
+                    html5: false,
+                    viewContainer: '.main',
+                    transitions: false
+                }).render();
+                DT.app.dispatch();
+            });
+
+        </script>
+    </body>
+</html>

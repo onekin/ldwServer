@@ -2,33 +2,20 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
   "http://www.springframework.org/dtd/spring-beans.dtd"
    [
-<!--
-<!ENTITY derefserver  "http://rdf.onekin.org" >
-<!ENTITY filepath  "/usr/local/tomcat/ldw/users.json" >
-<!ENTITY slashes  "2" >
-<!ENTITY weburl "http://158.227.178.168:8080/rdf">
- 
 <!ENTITY derefserver  "http://localhost:8080/ldw" >
-<!ENTITY filepath  "c:\iker\LDW\users.json" >
-<!ENTITY slashes  "3" >
-<!ENTITY weburl "http://localhost:8080/ldw">
-  --> 
-<!-- --> 
-<!ENTITY derefserver  "http://localhost:8080/ldw" >
-<!ENTITY filepath  "/Users/iker/Dropbox/develop/workspace/ldw/users.json" >
-<!ENTITY weburl "http://localhost:8080/ldw">
-<!ENTITY datahubAPIKEY "212cf6f5-a60e-47e5-88fe-720711d31ec7"> <!--DATAHUB--> 
-<!ENTITY repoOwner "onekin">									<!--GITHUB-->
-<!ENTITY repo "ldw">											<!--GITHUB-->
-<!ENTITY clientID "0195082155cb9e604e5b">						<!--GITHUB-->
-<!ENTITY clientSecret "b5a7caf44897468bd37faca138e48ab105cba3a4"> <!--GITHUB-->
-<!ENTITY code "2a1223813353e07ee9c3">       					<!--GITHUB-->
-<!ENTITY accessToken "cfa0dd1f1c8f094a4f5ee2b3fb3cba104cfc60f4"> <!--GITHUB-->
-<!ENTITY personalAccessToken  "b4d7198a52baf4ab61c0062d759f98514af2b397"><!--GITHUB-->
+<!ENTITY filepath  "/usr/local/tomcat/ldw/data.json" > <!--YOUR FILE'S PATH. THE FILE RECORD INFORMTATION TO RESTART THE SERVER--> 
+<!ENTITY weburl "http://rdf.onekin.org">  <!--YOUR SERVER's URI--> 
+<!ENTITY datahubAPIKEY "212cff5-a6E-47e5-88fe-72711d31ec7"> <!--YOUR DATAHUB APIKEY--> 
+<!ENTITY repoOwner "onekin">									<!--YOUR GITHUB REPO OWNER-->
+<!ENTITY repo "ldw">											<!--YOUR GITHUB REPO NAME-->
+<!ENTITY clientID "195082155cb9e64e5b">						<!--YOUR GITHUB CLIENT ID-->
+<!ENTITY clientSecret "b5a7caf44897468bd37faca138e48ab15cba3a4"> <!--YOUR GITHUB SECRET CODE-->
+<!ENTITY code "2a1223813353e7ee9c3">       					<!--YOUR GITHUB CODE-->
+<!ENTITY accessToken "cfadd1f1c8f94a4f5ee2b3fb3cba14cfc60f4"> <!--YOUR GITHUB ACCESS CODE-->
+<!ENTITY personalAccessToken  "b4d7198a52baf4ab61c62d759f98514af2b397"><!--YOUR PERSONAL GITHUB ACCESS TOKEN-->
 ]>
 
 <beans>
-   
       <bean id="wrappermanager"
         class="org.onekin.ldw.WrapperManager">
         <property name="derefserver">

@@ -1,0 +1,27 @@
+  {
+  "creators": [  {
+      "affiliation": "University of the Basque Country (UPV/EHU)",
+      "name": "Azpeitia, Iker",
+      "orcid": "0000-0002-2853-7390"
+    }, 
+     {
+      "affiliation": "University of the Basque Country (UPV/EHU)",
+      "name": "Iturrioz, Jon",
+      "orcid": "0000-0001-5868-6357"
+    },
+    {
+      "affiliation": "University of the Basque Country (UPV/EHU)",
+      "name": "Diaz, Oscar",
+      "orcid": "0000-0003-1334-4761"
+    }
+  ],
+  "keywords": [
+    "linked data",
+    "semantic web",
+    "API",
+    "wrapper",
+    "SYQL"
+  ],
+  "license": "GNU General Public License v3.0",
+  "upload_type": "software"
+}
